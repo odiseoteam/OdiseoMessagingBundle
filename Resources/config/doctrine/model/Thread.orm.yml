@@ -1,0 +1,30 @@
+Odiseo\Bundle\MessagingBundle\Model\Thread:
+    type: mappedSuperclass
+    table: odiseo_message_thread
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        createdBy:
+            targetEntity: Odiseo\Bundle\MessagingBundle\Model\ParticipantInterface
+            joinColumn:
+                name: creator_id
+                referencedColumnName: id
+        topic:
+           targetEntity: Odiseo\Bundle\MessagingBundle\Model\TopicInterface
+           joinColumn:
+               name: topic_id
+               referencedColumnName: id
+           
+    oneToMany:
+        messages:
+            targetEntity: Odiseo\Bundle\MessagingBundle\Model\MessageInterface
+            mappedBy: thread
+        metadata:
+            targetEntity: Odiseo\Bundle\MessagingBundle\Model\ThreadMetadataInterface
+            mappedBy: thread
+            cascade: ['all']
+    lifecycleCallbacks: {  }

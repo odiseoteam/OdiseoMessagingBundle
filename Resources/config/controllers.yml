@@ -1,0 +1,9 @@
+services:
+    odiseo.abstract_base_controller:
+        abstract: true
+        arguments:  [ "@security.token_storage", "@router", "@templating"]
+
+    odiseo_messaging.controller.messaging:
+        parent: odiseo.abstract_base_controller
+        class: Odiseo\Bundle\MessagingBundle\Controller\MessagingController
+        arguments:  [ "@odiseo_message.single_message_form.factory", "@odiseo_message.single_message.handler","@odiseo_product.service.product", "@odiseo_messaging.service.thread_message"]

@@ -1,0 +1,33 @@
+#id => idProduct 
+odiseo_message_list:
+    path:     /{productId}/{creatorId}
+    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listAction" , creatorId: null  }
+    requirements:
+        productId:  \d+
+        
+odiseo_message_new_vendor:
+    path:     buyer/{id}
+    defaults: { _controller: "odiseo.ecommerce.messaging_controller:newAction" }
+    requirements:
+        id:  \d+
+        
+#id => idProduct 
+odiseo_message_send:
+    path:     buyer/sendToVendor/{id}/{creatorId}
+    defaults: { _controller: "odiseo.ecommerce.messaging_controller:sendMessageAction" }
+    requirements:
+        id:  \d+
+       
+#id => idProduct 
+odiseo_message_buyer_list:
+    path:     buyer/list/{id}
+    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listBuyerMessagesAction" }
+    requirements:
+        id:  \d+
+
+
+odiseo_message_vendor_list:
+    path:     vendor/list/{id}
+    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listVendorMessagesAction" }
+    requirements:
+        id:  \d+

@@ -1,0 +1,22 @@
+Odiseo\Bundle\MessagingBundle\Model\MessageMetadata:
+    type: mappedSuperclass
+    table: odiseo_message_metadata
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        message:
+            targetEntity: Odiseo\Bundle\MessagingBundle\Model\MessageInterface
+            inversedBy: metadata
+            joinColumn:
+                name: message_id
+                referencedColumnName: id
+        participant:
+            targetEntity: Odiseo\Bundle\MessagingBundle\Model\ParticipantInterface
+            joinColumn:
+                name: participant_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

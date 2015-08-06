@@ -1,0 +1,30 @@
+{%  for message in messages %}
+<div class="row">
+<div class="col-md-11 col-md-offset-1">	
+	{%  if message.sender.id == creatorId %}
+		<div class="col-md-1">
+		<img src="/bundles/odiseoadscandy/img/avatar1.jpg" alt=""
+			class="img-circle" style="width:130%;">
+		</div>
+	{% endif %}
+	
+		<div class="col-md-8">
+			<div class="preorder new">
+					<div class="row">
+						<textarea  class="form-control description form-control" disabled id="odiseo_message_single_message_form_name_body"
+							data-rule-required="true"> {{ message.body }}</textarea>
+					</div>
+					<br>
+			</div>
+		</div>
+	{%  if message.sender.id != creatorId %}
+		<div class="col-md-1">
+			<img src="/bundles/odiseoadscandy/img/avatar1.jpg" alt=""
+				class="img-circle"  style="width:130%;">
+		</div>
+	{% endif %}
+
+</div>
+</div>
+
+{% endfor %}

@@ -1,0 +1,4 @@
+services:
+    odiseo_messaging.service.thread_message:
+        class: Odiseo\Bundle\MessagingBundle\Services\ThreadMessageService
+        arguments:  ["@doctrine.orm.entity_manager", "%fos_message.thread_class%", "%fos_message.thread_meta_class%", "@fos_message.message_manager"]
