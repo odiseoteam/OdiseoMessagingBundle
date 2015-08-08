@@ -19,7 +19,7 @@ class SingleMessageFormHandler
     {
     	$this->container = $container;
     	$this->request = $container->get('request');
-    	$this->productService = $container->get('odiseo.product.service');
+    	$this->productService = $container->get('odiseo_product.service.product');
     	$this->threadService =  $container->get('odiseo.ecommerce.thread_message.service');
     	$this->deliveryService = $container->get('fos_message.sender');
     	$this->composer = $container->get('fos_message.composer');
