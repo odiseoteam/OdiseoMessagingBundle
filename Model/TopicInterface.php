@@ -10,5 +10,5 @@ interface TopicInterface
      *
      * @return string
      */
-    function getId();
+    public function getId();
 }
