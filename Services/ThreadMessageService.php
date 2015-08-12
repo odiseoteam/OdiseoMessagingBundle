@@ -20,8 +20,8 @@ class ThreadMessageService extends ThreadManager
 		    ->innerJoin('tm.participant', 'p')
 		
 		    // the participant is in the thread participants
-		    ->andWhere('p.id = :user_id')
-		    ->setParameter('user_id', $participant->getId())
+		    ->andWhere('p.id = :participant_id')
+		    ->setParameter('participant_id', $participant->getId())
 		
 		    // the thread does not contain spam or flood
 		    ->andWhere('t.isSpam = :isSpam')
