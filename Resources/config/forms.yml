@@ -1,12 +1,10 @@
 services:   
-    odiseo_message.single_message.handler:
-        class: Odiseo\Bundle\MessagingBundle\FormHandler\SingleMessageFormHandler
+    odiseo_messaging.form.handler.message:
+        class: Odiseo\Bundle\MessagingBundle\Form\Handler\MessageFormHandler
         arguments:  [ "@service_container"]
     
-    odiseo_message.single_message_form.type:
-        class: Odiseo\Bundle\MessagingBundle\Form\Type\SingleMessageFormType
-        arguments:  [ "@router"]
-          
-    odiseo_message.single_message_form.factory:
-        class: Odiseo\Bundle\MessagingBundle\FormFactory\SingleMessageFormFactory
-        arguments:  [ "@form.factory" , "@odiseo_message.single_message_form.type" , 'odiseo_message_single_message_form_name' , 'Odiseo\Bundle\MessagingBundle\Model\Message']
+    odiseo_messaging.form.type.message:
+        class: Odiseo\Bundle\MessagingBundle\Form\Type\MessageFormType
+        arguments:  [ "%odiseo_messaging.model.message.class%" ]
+        tags:
+            - { name: form.type, alias: odiseo_messaging_message }

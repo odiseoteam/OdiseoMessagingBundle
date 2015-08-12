@@ -1,11 +1,10 @@
 <?php
 
-namespace Odiseo\Bundle\EcommerceBundle\Form\Type;
+namespace Odiseo\Bundle\MessagingBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Odiseo\Bundle\PreorderBundle\Model\PreOrderState;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class MessageFormTypeSuscriber implements EventSubscriberInterface

@@ -2,19 +2,12 @@
 
 namespace Odiseo\Bundle\MessagingBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
+use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SingleMessageFormType extends AbstractType
+class MessageFormType extends AbstractResourceType
 {
-	private $router;	
-	
-	public function __construct($router)
-    {
-		$this->router = $router;
-	}
-	
 	public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$builder
@@ -27,16 +20,9 @@ class SingleMessageFormType extends AbstractType
     	    ->addEventSubscriber(new MessageFormTypeSuscriber())
     	;
     }
-	
-	public function setDefaultOptions(OptionsResolverInterface $resolver)
-	{
-		$resolver->setDefaults(array(
-            'cascade_validation' => true,
-		));
-	}
 
     public function getName()
     {
-        return 'odiseo_ecommerce_single_message';
+        return 'odiseo_messaging_message';
     }
 }

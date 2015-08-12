@@ -5,7 +5,7 @@ namespace Odiseo\Bundle\MessagingBundle\Form\Handler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 
-class SingleMessageFormHandler
+class MessageFormHandler
 {
 	protected $serviceContainer;
 	protected $request;
@@ -20,22 +20,25 @@ class SingleMessageFormHandler
     	$this->container = $container;
     	$this->request = $container->get('request');
     	$this->productService = $container->get('odiseo_product.service.product');
-    	$this->threadService =  $container->get('odiseo.ecommerce.thread_message.service');
+    	$this->threadService =  $container->get('odiseo_messaging.service.thread_message');
     	$this->deliveryService = $container->get('fos_message.sender');
     	$this->composer = $container->get('fos_message.composer');
     	$this->sender = $container->get('security.context')->getToken()->getUser();
-    	$this->threadService =  $container->get('odiseo.ecommerce.thread_message.service');
     }
     
     public function process(Form $form)
     {
-    	if ('POST' !== $this->request->getMethod()) {
+    	if ('POST' !== $this->request->getMethod())
+        {
     		return false;
     	}
+
     	$form->bind($this->request);
-    	if ($form->isValid()) {
+    	if ($form->isValid())
+        {
     		return $this->processValidForm($form);
     	}
+
     	return false;
     }
     
@@ -57,7 +60,7 @@ class SingleMessageFormHandler
     		->setSubject('Consulting for Media')
     		->setBody($form->getData()->getBody())
     		->getMessage();
-    		$message->getThread()->setProduct($product);
+    		$message->getThread()->setTopic($product);
     		
     	}else {
     		$message = $this->composer->reply($thread)

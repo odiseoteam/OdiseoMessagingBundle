@@ -1,33 +1,32 @@
 #id => idProduct 
-odiseo_message_list:
+odiseo_messaging_list:
     path:     /{productId}/{creatorId}
-    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listAction" , creatorId: null  }
+    defaults: { _controller: "odiseo_messaging.controller.messaging:listAction" , creatorId: null  }
     requirements:
         productId:  \d+
         
-odiseo_message_new_vendor:
-    path:     buyer/{id}
-    defaults: { _controller: "odiseo.ecommerce.messaging_controller:newAction" }
+odiseo_messaging_new_vendor:
+    path:     /buyer/{id}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:newAction" }
     requirements:
         id:  \d+
         
 #id => idProduct 
-odiseo_message_send:
-    path:     buyer/sendToVendor/{id}/{creatorId}
-    defaults: { _controller: "odiseo.ecommerce.messaging_controller:sendMessageAction" }
+odiseo_messaging_send:
+    path:     /buyer/sendToVendor/{id}/{creatorId}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:sendMessageAction" }
     requirements:
         id:  \d+
        
 #id => idProduct 
-odiseo_message_buyer_list:
-    path:     buyer/list/{id}
-    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listBuyerMessagesAction" }
+odiseo_messaging_buyer_list:
+    path:     /buyer/list/{id}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:listBuyerMessagesAction" }
     requirements:
         id:  \d+
 
-
-odiseo_message_vendor_list:
-    path:     vendor/list/{id}
-    defaults: { _controller: "odiseo.ecommerce.messaging_controller:listVendorMessagesAction" }
+odiseo_messaging_vendor_list:
+    path:     /vendor/list/{id}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:listVendorMessagesAction" }
     requirements:
         id:  \d+

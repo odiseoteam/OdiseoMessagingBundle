@@ -5,27 +5,28 @@
 <script type="text/javascript">
 $(function()
 {
-	var successCalback = function(data){
+	var successCalback = function(data)
+    {
 		var row = $("<div class='row'></div>");
 		var textArea = $('form textarea');
 		textArea.prop('disabled', true);
 		$('form').remove();
 		var container = $('.preorder.new.form_message');
-		container.removeClass( "form_message" );
+		container.removeClass("form_message");
 		row.append(textArea);
 		container.append(row);
 		$('#single_tour_desc').append(data.html);
-		$("form[name='odiseo_message_single_message_form_name']").submit(submit);
+		$('form.odiseo_messaging_message').submit(submit);
 
-		var sendContractButton  = $("#odiseo_show_vendor_buttons_name_contract");
+		var sendContractButton  = $("#odiseo_preorder_show_vendor_buttons");
 		if( 0 < sendContractButton.length )
-			sendContractButton.click(showSendContractPopUp);
+			sendContractButton.click(showSendContractModal);
 
 		$('form textarea').text("");
 	};
 
-
-	var submit= function(e){
+	var submit = function(e)
+    {
 	    var form = $(this);
 	    var options = {	success : successCalback };
 		var url = form.attr('action');
@@ -34,30 +35,15 @@ $(function()
 	    return false;
 	 };
 
-	var showQuoteMedia = function(){
-		 $('#modalWindow').modal('show');
-		 $('#modalWindow .modal-title').html('Quote of Media');
-		 var form = $(this);
-		 var options = { success : function(data){
-			 var modalContent = $('#modalWindow .modal-body');
-			 if (data.error == false){
-				modalContent.html( data.html);
-			 }
-			 else{
-				 modalContent.html("Ha ocurrido un error");
-			}
-		}};
-		form.ajaxSubmit(options);
-		return false;
-	};
-
-	var showSendContractPopUp = function(){
+	var showSendContractModal = function()
+    {
 		$('#modalWindow').modal('show');
 		$('#modalWindow .modal-title').html('Send Contract');
 		$('#modalWindow .modal-dialog').css('width', '700px');
-		var form = $("form[name='odiseo_show_vendor_buttons_name']");
+		var form = $("form[name='odiseo_preorder_show_vendor_buttons']");
 		var options = {
-			success : function(data){
+			success: function(data)
+            {
 				 var modalContent = $('#modalWindow .modal-body');
 				 if (data.error == false){
 					modalContent.html( data.html);
@@ -69,11 +55,10 @@ $(function()
 		};
 		form.ajaxSubmit(options);
 		return false;
-	}
+	};
 	
-	$("form[name='odiseo_message_single_message_form_name']").submit(submit);
-	$("form[name='odiseo_show_buyer_buttons_form_name']").submit(showQuoteMedia);
-	$("#odiseo_show_vendor_buttons_name_contract").click(showSendContractPopUp);
+	$("form.odiseo_messaging_message").submit(submit);
+	$("#odiseo_preorder_show_vendor_buttons_contract").click(showSendContractModal);
 });
 </script>
 {% endblock %} 
@@ -86,7 +71,7 @@ $(function()
 			<div class="col-md-8" id="single_tour_desc">
 				<h3>History</h3>
 
-				{{	render(controller('odiseo.ecommerce.messaging_controller:listMessagesAction', { 'productId': product.id , 'creatorId': creatorId})) }}
+				{{	render(controller('odiseo_messaging.controller.messaging:listMessagesAction', { 'productId': product.id , 'creatorId': creatorId})) }}
 
 				{% if form is defined %}
 				<div class="row">	
@@ -97,7 +82,7 @@ $(function()
 	
 					<div class="col-md-11">
 						<div class="preorder new form_message">
-							<form action="{{ path('odiseo_message_send', {'id': product.id, 'creatorId': creatorId }) }}" method="POST">
+							<form action="{{ path('odiseo_messaging_send', {'id': product.id, 'creatorId': creatorId }) }}" class="odiseo_messaging_message" method="POST">
 								{{ form_errors(form) }}
 								{% for flashMessage in app.session.flashbag.get('notice') %}
 								<p class="sended">
@@ -115,7 +100,7 @@ $(function()
 								{{ form_widget(form.enviar, {'attr':{'class':'button_drop pull-right'}}) }}
 							</form>
 							
-							{{ render(controller('OdiseoAdsCandyBundle:Frontend/PreOrder:showPreOrderButton',{'productId': product.id , 'buyerId' : creatorId})) }}
+							{{ render(controller('odiseo_preorder.controller.preorder:showPreorderButtonAction', {'productId': product.id , 'buyerId' : creatorId})) }}
 						</div>
 					</div>
 				</div>
