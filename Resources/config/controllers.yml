@@ -1,9 +1,1 @@
 services:
-    odiseo.abstract_base_controller:
-        abstract: true
-        arguments:  [ "@security.token_storage", "@router", "@templating"]
-
-    odiseo_messaging.controller.messaging:
-        class: Odiseo\Bundle\MessagingBundle\Controller\MessagingController
-        calls:
-            - [ 'setContainer', ['@service_container'] ]
