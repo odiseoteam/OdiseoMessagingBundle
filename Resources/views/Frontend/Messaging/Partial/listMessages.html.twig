@@ -1,0 +1,5 @@
+<ul class="messages-list">
+{% for message in thread.messages %}
+	{{ include('OdiseoMessagingBundle:Frontend/Messaging/Partial:messageItem.html.twig', { 'message': message }) }}
+{% endfor %}
+</ul>

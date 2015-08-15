@@ -1,0 +1,31 @@
+{% set isOwner = message.sender.id == app.user.id %}
+<li>
+	<div class="message-item{{ not isOwner?' message-right':'' }} row row-condensed">
+		{% if isOwner %}
+		<div class="col-sm-2 col-md-1 text-center">
+			<a href="#" class="user-picture">
+				<img src="{{ message.sender.mainProfile.pictureName is defined?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
+			</a>
+		</div>
+		{% endif %}
+		<div class="col-sm-10{{ not isOwner?' col-md-push-1':'' }}">
+			<div class="message-body">
+				<div class="message-text">
+					<p>{{ message.body }}</p>
+				</div>
+			</div>
+			<div class="time-container text-muted">
+				<small class="time" title="{{ message.createdAt|date("r") }}">
+					{{ message.createdAt|date() }}
+				</small>
+			</div>
+		</div>
+		{% if not isOwner %}
+			<div class="col-sm-2 col-md-1 col-sm-10 col-md-push-1 text-center">
+				<a href="#" class="user-picture">
+					<img src="{{ message.sender.mainProfile.pictureName is defined?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
+				</a>
+			</div>
+		{% endif %}
+	</div>
+</li>

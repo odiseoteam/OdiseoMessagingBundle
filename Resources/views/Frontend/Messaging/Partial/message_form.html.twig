@@ -1,0 +1,36 @@
+<br>
+<div class="row">
+<div class="col-md-11 col-md-offset-1">	
+	<div class="col-md-1">
+		<img src="/bundles/odiseoadscandy/img/avatar1.jpg" alt=""
+			class="img-circle" style="width:130%;">
+	</div>
+	<div class="col-md-8">
+		<div class="preorder new form_message">
+			{% if form is defined %}
+            <form action="{{ path('odiseo_messaging_send', {'threadId': thread.id }) }}" class="odiseo_messaging_message" method="POST">
+            {{ form_errors(form) }}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+			<p class="sended">
+				<i class="fa fa-check"></i> {{ flashMessage }}
+			</p>
+			{% endfor %} {% for flashMessage in app.session.flashbag.get('error') %}
+			<p class="sended">
+				<i class="fa fa-times"></i> {{ flashMessage }}
+			</p>
+			{% endfor %}
+			<div class="row">
+                {{ form_widget(form.body, {'attr': {'class':'form-control description', 'data-rule-required':'true'} }) }}
+				{{ form_row(form._token) }}
+			</div>
+			<br>
+			<div class="row">
+			    {{ form_widget(form.enviar, {'attr': {'class':	'button_drop'}}) }}
+            </div>
+			</form>
+            {% endif %}
+			{{ render(controller('odiseo_preorder.controller.preorder:showPreorderButtonAction', {'productId': thread.topic.id , 'buyerId' : thread.createdBy.id })) }}
+		</div>
+	</div>
+</div>
+</div>

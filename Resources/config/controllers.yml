@@ -1,1 +1,8 @@
+parameters:
+    odiseo_messaging.controller.messaging.class: Odiseo\Bundle\MessagingBundle\Controller\MessagingController
+
 services:
+    odiseo_messaging.controller.messaging:
+        class: %odiseo_messaging.controller.messaging.class%
+        calls:
+            - [ 'setContainer', ['@service_container'] ]

@@ -1,0 +1,48 @@
+{% set product = thread.topic %}
+{% extends 'OdiseoProductBundle:Frontend/Product:productHeaderLayout.html.twig' %}
+
+{% block javascripts %} 
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/odiseomessaging/js/messaging.js') }}"></script>
+{% endblock %} 
+
+{% block content %}
+	{{ parent() }}
+	
+	<div class="container margin_60">
+		<div class="main_title">
+			<h2>Conversation</h2>
+		</div>
+
+		<hr>
+		<br>
+
+		<div class="row">
+			<div class="col-md-8" id="single_tour_desc">
+				{{	render(controller('odiseo_messaging.controller.messaging:listMessagesAction', { 'threadId': thread.id })) }}
+
+				{% if form is defined %}
+				<div class="row message-form">
+					<div class="col-sm-2 col-md-1 text-center">
+						<a href="#" class="user-picture">
+							<img src="{{ app.user.mainProfile.pictureName is defined?app.user.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
+						</a>
+					</div>
+					<div class="col-sm-10">
+						<form action="{{ path('odiseo_messaging_send', {'threadId': thread.id }) }}" class="odiseo_messaging_message" method="POST">
+							{{ form_errors(form) }}
+							{{ form_widget(form._token) }}
+							{{ form_widget(form.body, {'attr': {'class': 'form-control description', 'data-rule-required':'true'} }) }}
+							<br>
+							{{ form_widget(form.enviar, {'attr':{'class':'button_drop pull-right'}}) }}
+						</form>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+			<!--End  single_tour_desc-->
+			<aside class="col-md-4"></aside>
+		</div>
+	</div>
+</div>
+{% endblock %}

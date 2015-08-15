@@ -1,32 +1,18 @@
-#id => idProduct 
 odiseo_messaging_list:
-    path:     /{productId}/{creatorId}
-    defaults: { _controller: "odiseo_messaging.controller.messaging:listAction" , creatorId: null  }
+    path:     /{threadId}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:listAction" }
     requirements:
-        productId:  \d+
-        
-odiseo_messaging_new_vendor:
-    path:     /buyer/{id}
-    defaults: { _controller: "odiseo_messaging.controller.messaging:newAction" }
+        threadId:  \d+
+
+odiseo_messaging_list_creator_topic:
+    path:     /{creatorId}/{topicId}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:listWithCreatorAndTopicAction" }
     requirements:
-        id:  \d+
-        
-#id => idProduct 
+        creatorId:  \d+
+        thretopicId:  \d+
+
 odiseo_messaging_send:
-    path:     /buyer/sendToVendor/{id}/{creatorId}
+    path:     /send/{threadId}
     defaults: { _controller: "odiseo_messaging.controller.messaging:sendMessageAction" }
     requirements:
-        id:  \d+
-       
-#id => idProduct 
-odiseo_messaging_buyer_list:
-    path:     /buyer/list/{id}
-    defaults: { _controller: "odiseo_messaging.controller.messaging:listBuyerMessagesAction" }
-    requirements:
-        id:  \d+
-
-odiseo_messaging_vendor_list:
-    path:     /vendor/list/{id}
-    defaults: { _controller: "odiseo_messaging.controller.messaging:listVendorMessagesAction" }
-    requirements:
-        id:  \d+
+        threadId:  \d+

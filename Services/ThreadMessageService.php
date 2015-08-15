@@ -7,7 +7,7 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 
 class ThreadMessageService extends ThreadManager
 {
-	public function searchThreadByCreatorAndProduct($creatorId, $topicId)
+	public function searchThreadByCreatorAndTopic($creatorId, $topicId)
     {
 		return $this->repository->findOneBy(array('createdBy' => $creatorId, 'topic' => $topicId));
 	}
