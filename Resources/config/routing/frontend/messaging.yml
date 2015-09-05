@@ -16,3 +16,9 @@ odiseo_messaging_send:
     defaults: { _controller: "odiseo_messaging.controller.messaging:sendMessageAction" }
     requirements:
         threadId:  \d+
+
+odiseo_messaging_update_list:
+    path:     /updateList/{messageId}
+    defaults: { _controller: "odiseo_messaging.controller.messaging:updateMessageListAction" }
+    requirements:
+        messageId:  \d+

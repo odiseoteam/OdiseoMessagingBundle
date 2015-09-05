@@ -39,4 +39,29 @@ class ThreadMessageService extends ThreadManager
 		    ->execute()
         ;
 	}
+
+
+	public function findNewMessagesFrom($messageId, $currentUserId)
+	{
+		$message = $this->findMessageById($messageId);
+		$qb = $this->em->createQueryBuilder();
+		$qb->select('m')// string 'u' is converted to array internally
+			->from('Odiseo\Bundle\MessagingBundle\Model\Message', 'm')
+			->where($qb->expr()->eq('m.thread', '?1'))
+			->andWhere($qb->expr()->neq('m.sender', '?2'))
+			->andWhere($qb->expr()->gt('m.createdAt', '?3'))
+			->setParameters(array(1 => $message->getThread(), 2 => $currentUserId, 3 => $message->getCreatedAt()));
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findMessageById($messageId)
+	{
+		$qb = $this->em->createQueryBuilder();
+		$qb->select('m')
+		->from('Odiseo\Bundle\MessagingBundle\Model\Message', 'm')
+			->where($qb->expr()->eq('m.id', '?1'));
+		$qb->setParameter(1, $messageId );
+
+		return $qb->getQuery()->getSingleResult();
+	}
 }

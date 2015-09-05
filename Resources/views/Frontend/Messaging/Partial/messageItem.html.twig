@@ -1,6 +1,9 @@
 {% set isOwner = message.sender.id == app.user.id %}
 <li>
-	<div class="message-item{{ not isOwner?' message-right':'' }} row row-condensed">
+	{% if isLast is not defined %}
+		{% set isLast = 'false' %}
+	{% endif %}
+	<div data-last="{{ isLast ? 'true' : 'false' }}" data-source-url='{{ isLast ? "updateList/#{message.id} " : "" }}' class="message-item{{ not isOwner?' message-right':'' }} row row-condensed">
 		{% if isOwner %}
 		<div class="col-sm-2 col-md-1 text-center">
 			<a href="#" class="user-picture">

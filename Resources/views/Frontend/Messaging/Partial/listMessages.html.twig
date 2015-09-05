@@ -1,5 +1,5 @@
 <ul class="messages-list">
-{% for message in thread.messages %}
-	{{ include('OdiseoMessagingBundle:Frontend/Messaging/Partial:messageItem.html.twig', { 'message': message }) }}
+{% for message in messages %}
+		{{ include('OdiseoMessagingBundle:Frontend/Messaging/Partial:messageItem.html.twig', { 'message': message , 'isLast' : "#{loop.last}"  }) }}
 {% endfor %}
 </ul>
