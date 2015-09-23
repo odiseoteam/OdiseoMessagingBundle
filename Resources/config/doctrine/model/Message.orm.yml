@@ -7,6 +7,12 @@ Odiseo\Bundle\MessagingBundle\Model\Message:
             id: true
             generator:
                 strategy: AUTO
+    fields:
+        media:
+            column: media
+            type: string
+            varchar: 255
+            nullable: true
     manyToOne:
         thread:
             targetEntity: Odiseo\Bundle\MessagingBundle\Model\ThreadInterface

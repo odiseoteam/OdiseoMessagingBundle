@@ -1,0 +1,4 @@
+Odiseo\Bundle\MessagingBundle\Model\Message:
+    mediaFile:
+        mapping:           user_images
+        filename_property: media

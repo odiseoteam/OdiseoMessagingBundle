@@ -14,7 +14,16 @@
         e.preventDefault();
 
         var form = $(this);
-        form.ajaxSubmit({
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: form.attr("action"),
+            type: "POST",
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
             success : sendMessageSuccess
         });
 

@@ -15,7 +15,11 @@ class MessageFormType extends AbstractResourceType
     			'required' => true,
     			'label'    => 'Description'
     	    ))
-            ->add('ready', 'submit', array('label' => 'READY TO PREORDER'))
+            ->add('mediaFile', 'file', array(
+                'required' => false,
+                'label' => 'Attach a file'
+            ))
+            //->add('ready', 'submit', array('label' => 'READY TO PREORDER'))
             ->add('enviar', 'submit', array('label' => 'Enviar'))
     	    ->addEventSubscriber(new MessageFormTypeSuscriber())
     	;

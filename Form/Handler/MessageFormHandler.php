@@ -48,6 +48,11 @@ class MessageFormHandler
 			->setBody($form->getData()->getBody())
 			->getMessage()
 		;
+		$mediaFile = $form->get('mediaFile')->getData();
+		if($mediaFile)
+		{
+			$message->setMediaFile($mediaFile);
+		}
 
     	$this->deliveryService->send($message);
 
