@@ -7,7 +7,7 @@
 		{% if isOwner %}
 		<div class="col-sm-2 col-md-1 text-center">
 			<a href="#" class="user-picture">
-				<img src="{{ message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
+				<img src="{{ message.sender.mainProfile and message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
 			</a>
 		</div>
 		{% endif %}
@@ -29,7 +29,7 @@
 		{% if not isOwner %}
 			<div class="col-sm-2 col-md-1 col-sm-10 col-md-push-1 text-center">
 				<a href="#" class="user-picture">
-					<img src="{{ message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
+					<img src="{{ message.sender.mainProfile and message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
 				</a>
 			</div>
 		{% endif %}
