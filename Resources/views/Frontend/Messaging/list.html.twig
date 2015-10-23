@@ -11,7 +11,12 @@
 	
 	<div class="container margin_60">
 		<div class="main_title">
-			<h2>Conversation</h2>
+		{% if app.user.id == preorder.buyer.id %}
+			{% set toTalker = preorder.vendor.fullname %}
+		{% else %}
+			{% set toTalker = preorder.buyer.fullname %}
+		{% endif %}
+		<h2>Conversation <span class="with">with </span><span class="toTalker">{{ toTalker }}</span></h2>
 		</div>
 
 		<hr>

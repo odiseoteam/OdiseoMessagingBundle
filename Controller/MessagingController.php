@@ -17,9 +17,15 @@ class MessagingController extends Controller
 
     	$form = $this->get('form.factory')->create('odiseo_messaging_message');
 
+		$preorderService = $this->get('odiseo_preorder.service.preorder');
+		$buyerId = $thread->getCreatedBy()->getId();
+		$productId = $thread->getTopic()->getId();
+		$preorder = $preorderService->getMainRepository()->findLastByBuyerAndProduct($buyerId, $productId);
+
    		return $this->render('OdiseoMessagingBundle:Frontend/Messaging:list.html.twig', array(
             'form' => $form->createView(),
-            'thread' => $thread
+            'thread' => $thread,
+			'preorder' => $preorder
         ));
     }
 
