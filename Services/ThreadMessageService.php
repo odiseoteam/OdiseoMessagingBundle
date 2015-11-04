@@ -18,6 +18,7 @@ class ThreadMessageService extends ThreadManager
             ->createQueryBuilder('t')
 		    ->innerJoin('t.metadata', 'tm')
 		    ->innerJoin('tm.participant', 'p')
+			->innerJoin('t.topic', 'tp')
 		
 		    // the participant is in the thread participants
 		    ->andWhere('p.id = :participant_id')
@@ -30,6 +31,8 @@ class ThreadMessageService extends ThreadManager
 		    // the thread is not deleted by this participant
 		    ->andWhere('tm.isDeleted = :isDeleted')
 		    ->setParameter('isDeleted', false, \PDO::PARAM_BOOL)
+
+			->andWhere('tp.deletedAt IS NULL')
 		
 		    // there is at least one message written by an other participant
 		
