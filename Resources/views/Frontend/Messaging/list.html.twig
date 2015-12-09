@@ -8,7 +8,7 @@
 
 {% block content %}
 	{{ parent() }}
-	
+
 	<div class="container margin_60">
 		<div class="main_title">
 		{% if app.user.id == preorder.buyer.id %}
@@ -16,7 +16,7 @@
 		{% else %}
 			{% set toTalker = preorder.buyer.fullname %}
 		{% endif %}
-		<h2>Conversation <span class="with">with </span><span class="toTalker">{{ toTalker }}</span></h2>
+		<h2>{{ 'odiseo.message.conversation' | trans }} <span class="with">{{ 'odiseo.message.with' | trans }}  </span><span class="toTalker">{{ toTalker }}</span></h2>
 		</div>
 
 		<hr>
