@@ -17,10 +17,10 @@ class MessageFormType extends AbstractResourceType
     	    ))
             ->add('mediaFile', 'file', array(
                 'required' => false,
-                'label' => 'Attach a file'
+                'label' => 'odiseo.message.attach_file'
             ))
             //->add('ready', 'submit', array('label' => 'READY TO PREORDER'))
-            ->add('enviar', 'submit', array('label' => 'Enviar'))
+            ->add('enviar', 'submit', array('label' => 'odiseo.message.send'))
     	    ->addEventSubscriber(new MessageFormTypeSuscriber())
     	;
     }

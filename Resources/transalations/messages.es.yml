@@ -2,3 +2,5 @@ odiseo:
     message:
         conversation: 'Conversación'
         with: 'con'
+        send: 'Enviar'
+        attach_file: 'Subir archivo'
