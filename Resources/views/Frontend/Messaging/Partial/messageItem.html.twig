@@ -5,13 +5,13 @@
 	{% endif %}
 	<div data-last="{{ isLast ? 'true' : 'false' }}" data-source-url='{{ isLast ? "updateList/#{message.id} " : "" }}' class="message-item{{ not isOwner?' message-right':'' }} row row-condensed">
 		{% if isOwner %}
-		<div class="col-sm-2 col-md-1 text-center">
+		<div class="col-xs-2 col-md-1 text-center">
 			<a href="#" class="user-picture">
 				<img src="{{ message.sender.mainProfile and message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
 			</a>
 		</div>
 		{% endif %}
-		<div class="col-sm-10{{ not isOwner?' not-owner col-md-push-1':' owner' }}">
+		<div class="col-xs-10{{ not isOwner?' not-owner col-md-push-1':' owner' }}">
 			<div class="message-body">
 				<div class="message-text"{{ message.media?' style="padding-bottom: 10px;"':'' }}>
 					<p>{{ message.body }}</p>
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		{% if not isOwner %}
-			<div class="col-sm-2 col-md-1 col-sm-10 col-md-push-1 text-center">
+			<div class="col-xs-2 col-md-1 col-md-push-1 text-center">
 				<a href="#" class="user-picture">
 					<img src="{{ message.sender.mainProfile and message.sender.mainProfile.pictureName?message.sender.mainProfile.pictureName|imagine_filter('user_picture'):asset('bundles/odiseouser/images/avatar.gif') }}" alt="" class="img-circle">
 				</a>
